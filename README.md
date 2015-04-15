@@ -1,6 +1,6 @@
-{{AppVeyor build status badge for master branch}}
+[![Build status](https://ci.appveyor.com/api/projects/status/3rh4o5270qrh4gk3/branch/master?svg=true)](https://ci.appveyor.com/project/PowerShell/xscom/branch/master)
 
-#{{ModuleName}}
+# xSCOM
 
 {{Description}}
 
