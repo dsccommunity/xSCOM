@@ -9,4 +9,3 @@ class MSFT_xSCOMManagementPack : OMI_BaseResource
     [Required, Description("Folder within the source path containing the source files for installation.")] String SourceFolder;
     [Required, Description("Name of the file in the source folder for the Management Pack.")] String SourceFile;
 };
-

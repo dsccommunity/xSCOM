@@ -1,6 +1,6 @@
 @{
 # Version number of this module.
-ModuleVersion = '1.2.0.0'
+ModuleVersion = '1.3.3.0'
 
 # ID used to uniquely identify this module
 GUID = '990eecbc-0f40-43cb-89dd-b43c79904f56'
@@ -29,4 +29,3 @@ FunctionsToExport = '*'
 # Cmdlets to export from this module
 CmdletsToExport = '*'
 }
-

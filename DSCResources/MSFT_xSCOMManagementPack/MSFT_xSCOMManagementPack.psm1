@@ -81,7 +81,6 @@ function Set-TargetResource
         $SourcePath = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\System Center Operations Manager\12\Setup" -Name "InstallDirectory").InstallDirectory
     }
     $MPFile = Join-Path -Path (Join-Path -Path $SourcePath -ChildPath $SourceFolder) -ChildPath $SourceFile
-    Write-Verbose "MPFile: $MPFile"
 
     if(Test-Path -Path $MPFile)
     {
@@ -236,4 +235,3 @@ function Test-TargetResource
 
 
 Export-ModuleMember -Function *-TargetResource
-

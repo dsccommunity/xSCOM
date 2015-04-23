@@ -129,7 +129,7 @@ function Set-TargetResource
     
         $MSPPath = Join-Path -Path (Join-Path -Path $SourcePath -ChildPath $SourceFolder) -ChildPath $UpdateFile
         $MSPPath = ResolvePath $MSPPath
-        $Arguments = "/update $MSPPath"
+        $Arguments = "/update $MSPPath /norestart"
         Write-Verbose "Arguments: $Arguments"
 
         $Process = StartWin32Process -Path $Path -Arguments $Arguments -Credential $SetupCredential
@@ -181,4 +181,3 @@ function Test-TargetResource
 
 
 Export-ModuleMember -Function *-TargetResource
-
