@@ -181,6 +181,7 @@ Note: This is overridden by Version if both are set.
 ## Versions
 
 ### Unreleased
+* Converted appveyor.yml to install Pester from PSGallery instead of from Chocolatey.
 
 ### 1.3.3.0
 
