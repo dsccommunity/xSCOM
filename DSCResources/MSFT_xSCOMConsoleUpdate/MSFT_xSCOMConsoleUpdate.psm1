@@ -14,24 +14,27 @@ function Get-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en\Updates",
+        $SourceFolder = "\SystemCenter2016\OperationsManager\Updates",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
         $SetupCredential
     )
    
-    $Version = (Get-WmiObject -Class Win32_Product | Where-Object {$_.Name -eq "System Center Operations Manager 2012 Console"}).Version
+    $Version = (Get-WmiObject -Class Win32_Product | Where-Object {$_.Name -like "System Center Operations Manager * Console"}).Version
     
     switch($Version)
     {
-        "7.1.10226.0"
+        <#
+        "7.2.11759.0"
         {
+            # Need to update to corrct codes for 2016 UR 1
             $ProductCode = "{041C3416-87CE-4B02-918E-6FDC95F241D3}"
             $PatchID = "{2BE319B6-DBD6-4F52-9DE1-6EDF1E129F48}"
-            $Update = "Update Rollup 4"
+            $Update = "Update Rollup 1"
         }
-        "7.2.10015.0"
+        #>
+        "7.2.11719.0"
         {
             $returnValue = @{
                 Ensure = "Present"
@@ -91,7 +94,7 @@ function Set-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en\Updates",
+        $SourceFolder = "\SystemCenter2016\OperationsManager\Updates",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
@@ -102,10 +105,13 @@ function Set-TargetResource
        
     switch($Version)
     {
-        "7.1.10226.0"
+        <#
+        "7.2.11759.0"
         {
+            # Need to add correct update file for UR 1 2016
             $UpdateFile = "KB2992020-AMD64-ENU-Console.msp"
         }
+        #>
         "7.2.10015.0"
         {
             Write-Verbose "No update for this version of Operations Manager!"
@@ -167,7 +173,7 @@ function Test-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en\Updates",
+        $SourceFolder = "\SystemCenter2016\OperationsManager\Updates",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]

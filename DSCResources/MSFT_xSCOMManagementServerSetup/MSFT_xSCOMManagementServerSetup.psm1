@@ -14,7 +14,7 @@ function Get-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en",
+        $SourceFolder = "\SystemCenter2016\OperationsManager",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
@@ -86,10 +86,11 @@ function Get-TargetResource
     )
 
     Import-Module $PSScriptRoot\..\..\xPDT.psm1
-        
+
     $Path = Join-Path -Path (Join-Path -Path $SourcePath -ChildPath $SourceFolder) -ChildPath "setup.exe"
     $Path = ResolvePath $Path
     $Version = (Get-Item -Path $Path).VersionInfo.ProductVersion
+    Write-Verbose -Message "Set-TargetResource: Checking for supported upgrades for version: $Version"
 
     switch($Version)
     {
@@ -99,9 +100,9 @@ function Get-TargetResource
             $InstallRegVersion = "12"
             $RegVersion = "3.0"
         }
-        "7.2.10015.0"
+        "7.2.11719.0"
         {
-            $IdentifyingNumber = "{43C498CB-D391-4B07-9C03-85C4E8239102}"
+            $IdentifyingNumber = "{1199B530-E226-46DC-B7F4-7891D5AFCF22}"
             $InstallRegVersion = "12"
             $RegVersion = "3.0"
         }
@@ -169,7 +170,7 @@ function Get-TargetResource
             SourceFolder = $SourceFolder
         }
     }
-    
+
     $returnValue
 }
 
@@ -189,7 +190,7 @@ function Set-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en",
+        $SourceFolder = "\SystemCenter2016\OperationsManager",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
@@ -261,10 +262,11 @@ function Set-TargetResource
     )
 
     Import-Module $PSScriptRoot\..\..\xPDT.psm1
-        
+
     $Path = Join-Path -Path (Join-Path -Path $SourcePath -ChildPath $SourceFolder) -ChildPath "setup.exe"
     $Path = ResolvePath $Path
     $Version = (Get-Item -Path $Path).VersionInfo.ProductVersion
+    Write-Verbose -Message "Set-TargetResource: Checking for supported upgrades for version: $Version"
 
     switch($Version)
     {
@@ -273,9 +275,9 @@ function Set-TargetResource
             $IdentifyingNumber = "{C92727BE-BD12-4140-96A6-276BA4F60AC1}"
             $InstallRegVersion = "12"
         }
-        "7.2.10015.0"
+        "7.2.11719.0"
         {
-            $IdentifyingNumber = "{43C498CB-D391-4B07-9C03-85C4E8239102}"
+            $IdentifyingNumber = "{1199B530-E226-46DC-B7F4-7891D5AFCF22}"
             $InstallRegVersion = "12"
         }
         Default
@@ -283,7 +285,7 @@ function Set-TargetResource
             throw "Unknown version of Operations Manager!"
         }
     }
-
+    Write-Verbose -Message "Set-TargetResource: Checking input parameters"
     switch($Ensure)
     {
         "Present"
@@ -313,11 +315,11 @@ function Set-TargetResource
             {
                 $SendODRReports = 0
             }
-
+            Write-Verbose -Message "Set-TargetResource: Removing default instance name if present"
             # Remove default instance name
             $SqlServerInstance = $SqlServerInstance.Replace("\MSSQLSERVER","")
             $DwSqlServerInstance = $DwSqlServerInstance.Replace("\MSSQLSERVER","")
-
+            Write-Verbose -Message "Set-TargetResource: Creating install arguments"
             # Create install arguments
             $Arguments = "/silent /install /AcceptEndUserLicenseAgreement:1 /components:OMServer"
             $ArgumentVars = @(
@@ -363,7 +365,7 @@ function Set-TargetResource
                     }
                 }
             }
-            
+
             # Replace sensitive values for verbose output
             $Log = $Arguments
             $LogVars = @("ActionAccount","DASAccount","DataReader","DataWriter")
@@ -385,14 +387,17 @@ function Set-TargetResource
 
     Write-Verbose "Path: $Path"
     Write-Verbose "Arguments: $Log"
-    
+
     $Process = StartWin32Process -Path $Path -Arguments $Arguments -Credential $SetupCredential -AsTask
     Write-Verbose $Process
+    Write-Verbose -Message "Set-TargetResource: Waiting for WaitForWin32ProcessEnd"
     WaitForWin32ProcessEnd -Path $Path -Arguments $Arguments -Credential $SetupCredential
+
 
     # Additional first Management Server "Present" actions
     if(($Ensure -eq "Present") -and $FirstManagementServer -and (Get-WmiObject -Class Win32_Product | Where-Object {$_.IdentifyingNumber -eq $IdentifyingNumber}))
     {
+
         # Set ProductKey
         if($PSBoundParameters.ContainsKey("ProductKey"))
         {
@@ -408,6 +413,7 @@ function Set-TargetResource
             Restart-Service cshost
         }
         # Wait for Management Service
+        Write-Verbose -Message "Set-TargetResource: Waiting for Mgmt Service"
         $ErrorActionPreference = "SilentlyContinue"
         foreach($Port in @($ManagementServicePort,5724))
         {
@@ -463,7 +469,7 @@ function Test-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en",
+        $SourceFolder = "\SystemCenter2016\OperationsManager",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
@@ -535,7 +541,7 @@ function Test-TargetResource
     )
 
     $result = ((Get-TargetResource @PSBoundParameters).Ensure -eq $Ensure)
-    
+
     $result
 }
 

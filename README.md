@@ -4,9 +4,6 @@
 
 The **xSCOM** module contains set of DSC resources for installation of System Center Operations Manager (OM).
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
 ## Contributing
 Please check out common DSC Resources [contributing guidelines](https://github.com/PowerShell/DscResource.Kit/blob/master/CONTRIBUTING.md).
 
@@ -180,8 +177,9 @@ Note: This is overridden by Version if both are set.
 
 ## Versions
 
-### Unreleased
-* Converted appveyor.yml to install Pester from PSGallery instead of from Chocolatey.
+### 1.4.0.0
+
+* Changed to support SCOM 2016
 
 ### 1.3.3.0
 

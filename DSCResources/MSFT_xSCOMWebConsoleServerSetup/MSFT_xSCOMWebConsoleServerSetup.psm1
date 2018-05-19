@@ -14,7 +14,7 @@ function Get-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en",
+        $SourceFolder = "\SystemCenter2016\OperationsManager",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
@@ -52,11 +52,11 @@ function Get-TargetResource
     )
 
     Import-Module $PSScriptRoot\..\..\xPDT.psm1
-        
+
     $Path = Join-Path -Path (Join-Path -Path $SourcePath -ChildPath $SourceFolder) -ChildPath "setup.exe"
     $Path = ResolvePath $Path
     $Version = (Get-Item -Path $Path).VersionInfo.ProductVersion
-
+    Write-Verbose -Message "Checking for version: $Version"
     switch($Version)
     {
         "7.1.10226.0"
@@ -64,10 +64,11 @@ function Get-TargetResource
             $IdentifyingNumber = "{B9853D74-E2A7-446C-851D-5B5374671D0B}"
             $InstallRegVersion = "12"
         }
-        "7.2.10015.0"
+        "7.2.11719.0"
         {
-            $IdentifyingNumber = "{E533B951-2CAA-454F-A186-383F203E591D}"
+            $IdentifyingNumber = "{676EB643-C22A-4EEC-A8CF-13A0719056A5}"
             $InstallRegVersion = "12"
+            $RegVersion = "3.0"
         }
         Default
         {
@@ -97,7 +98,7 @@ function Get-TargetResource
             SourceFolder = $SourceFolder
         }
     }
-    
+
     $returnValue
 }
 
@@ -117,7 +118,7 @@ function Set-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en",
+        $SourceFolder = "\SystemCenter2016\OperationsManager",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
@@ -155,11 +156,11 @@ function Set-TargetResource
     )
 
     Import-Module $PSScriptRoot\..\..\xPDT.psm1
-        
+
     $Path = Join-Path -Path (Join-Path -Path $SourcePath -ChildPath $SourceFolder) -ChildPath "setup.exe"
     $Path = ResolvePath $Path
     $Version = (Get-Item -Path $Path).VersionInfo.ProductVersion
-
+    Write-Verbose -Message "Checking for version: $Version"
     switch($Version)
     {
         "7.1.10226.0"
@@ -167,10 +168,10 @@ function Set-TargetResource
             $IdentifyingNumber = "{B9853D74-E2A7-446C-851D-5B5374671D0B}"
             $MSIdentifyingNumber = "{C92727BE-BD12-4140-96A6-276BA4F60AC1}"
         }
-        "7.2.10015.0"
+        "7.2.11719.0"
         {
-            $IdentifyingNumber = "{E533B951-2CAA-454F-A186-383F203E591D}"
-            $MSIdentifyingNumber = "{43C498CB-D391-4B07-9C03-85C4E8239102}"
+            $IdentifyingNumber = "{676EB643-C22A-4EEC-A8CF-13A0719056A5}"
+            $MSIdentifyingNumber = "{1199B530-E226-46DC-B7F4-7891D5AFCF22}"
         }
         Default
         {
@@ -234,7 +235,7 @@ function Set-TargetResource
 
     Write-Verbose "Path: $Path"
     Write-Verbose "Arguments: $Arguments"
-    
+
     $Process = StartWin32Process -Path $Path -Arguments $Arguments -Credential $SetupCredential -AsTask
     Write-Verbose $Process
     WaitForWin32ProcessEnd -Path $Path -Arguments $Arguments -Credential $SetupCredential
@@ -269,7 +270,7 @@ function Test-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en",
+        $SourceFolder = "\SystemCenter2016\OperationsManager",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
@@ -307,7 +308,7 @@ function Test-TargetResource
     )
 
     $result = ((Get-TargetResource @PSBoundParameters).Ensure -eq $Ensure)
-    
+
     $result
 }
 

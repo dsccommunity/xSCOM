@@ -14,24 +14,27 @@ function Get-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en\Updates",
+        $SourceFolder = "\SystemCenter2016\OperationsManager\Updates",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
         $SetupCredential
     )
    
-    $Version = (Get-WmiObject -Class Win32_Product | Where-Object {$_.Name -eq "System Center Operations Manager 2012 Server"}).Version
+    $Version = (Get-WmiObject -Class Win32_Product | Where-Object {$_.Name -like "System Center Operations Manager * Server"}).Version
     
     switch($Version)
     {
-        "7.1.10226.0"
+        <#
+        "7.2.11759.0"
         {
+            # Need to add correct UR1 Code for 2016 update
             $ProductCode = "{C92727BE-BD12-4140-96A6-276BA4F60AC1}"
             $PatchID = "{F6930A3E-016D-4F88-9186-440090A836DF}"
             $Update = "Update Rollup 4"
         }
-        "7.2.10015.0"
+        #>
+        "7.2.11719.0"
         {
             $returnValue = @{
                 Ensure = "Present"
@@ -91,22 +94,25 @@ function Set-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en\Updates",
+        $SourceFolder = "\SystemCenter2016\OperationsManager\Updates",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
         $SetupCredential
     )
 
-    $Version = (Get-WmiObject -Class Win32_Product | Where-Object {$_.Name -eq "System Center Operations Manager 2012 Server"}).Version
+    $Version = (Get-WmiObject -Class Win32_Product | Where-Object {$_.Name -eq "System Center Operations Manager 2016 Server"}).Version
        
     switch($Version)
     {
-        "7.1.10226.0"
+        <#
+        "7.2.11759.0"
         {
+            # Update with correct name of UR1 file for 2016
             $UpdateFile = "KB2992020-AMD64-Server.msp"
         }
-        "7.2.10015.0"
+        #>
+        "7.2.11719.0"
         {
             Write-Verbose "No update for this version of Operations Manager!"
         }
@@ -167,7 +173,7 @@ function Test-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2012R2\OperationsManager.en\Updates",
+        $SourceFolder = "\SystemCenter2016\OperationsManager\Updates",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
