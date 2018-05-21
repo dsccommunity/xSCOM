@@ -14,7 +14,7 @@ function Get-TargetResource
         $SourcePath,
 
         [System.String]
-        $SourceFolder = "\SystemCenter2016\OperationsManager",
+        $SourceFolder = "\SystemCenter2012R2\OperationsManager",
 
         [parameter(Mandatory = $true)]
         [System.Management.Automation.PSCredential]
