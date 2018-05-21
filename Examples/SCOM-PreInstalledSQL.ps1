@@ -220,32 +220,32 @@ Configuration SCOM
         if($SystemCenter2016OperationsManagerManagementServers | Where-Object {$_ -eq $Node.NodeName})
         {
 
-			If($Node.SystemCenter2016OperationsManagerActionAccount.UserName -eq $Node.SystemCenter2016OperationsManagerDASAccount.UserName)
-			{
-				Group "Administrators"
-				{
-					GroupName = "Administrators"
+            If($Node.SystemCenter2016OperationsManagerActionAccount.UserName -eq $Node.SystemCenter2016OperationsManagerDASAccount.UserName)
+            {
+                Group "Administrators"
+                {
+                    GroupName = "Administrators"
 
-					MembersToInclude = @(
-						$Node.SystemCenter2016OperationsManagerDASAccount.UserName
-					)
-					Credential = $Node.InstallerServiceAccount
-					PsDscRunAsCredential = $Node.InstallerServiceAccount
-				}
-			}
-			Else
-			{
-				Group "Administrators"
-				{
-					GroupName = "Administrators"
-					MembersToInclude = @(
-						$Node.SystemCenter2016OperationsManagerActionAccount.UserName,
-						$Node.SystemCenter2016OperationsManagerDASAccount.UserName
-					)
-					Credential = $Node.InstallerServiceAccount
-					PsDscRunAsCredential = $Node.InstallerServiceAccount
-				}
-			}
+                    MembersToInclude = @(
+                        $Node.SystemCenter2016OperationsManagerDASAccount.UserName
+                    )
+                    Credential = $Node.InstallerServiceAccount
+                    PsDscRunAsCredential = $Node.InstallerServiceAccount
+                }
+            }
+            Else
+            {
+                Group "Administrators"
+                {
+                    GroupName = "Administrators"
+                    MembersToInclude = @(
+                        $Node.SystemCenter2016OperationsManagerActionAccount.UserName,
+                        $Node.SystemCenter2016OperationsManagerDASAccount.UserName
+                    )
+                    Credential = $Node.InstallerServiceAccount
+                    PsDscRunAsCredential = $Node.InstallerServiceAccount
+                }
+            }
         }
 
         # Install first Management Server
