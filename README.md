@@ -25,7 +25,7 @@ Please check out common DSC Resources [contributing guidelines](https://github.c
 
 ### xSCOMManagementServerSetup
 
-* **Ensure**: (Key) Ensures that the OM management server is **Present** or **Absent**. 
+* **Ensure**: (Key) Ensures that the OM management server is **Present** or **Absent**.
 * **SourcePath**: (Required) UNC path to the root of the source files for installation.
 * **SourceFolder**: Folder within the source path containing the source files for installation.
 * **SetupCredential**: (Required) Credential to be used to perform the installation.
@@ -48,23 +48,23 @@ Please check out common DSC Resources [contributing guidelines](https://github.c
 * **DwSqlServerInstance**: (Required) The data warehouse server and instance.
 * **DwDatabaseName**: The name of the data warehouse database.
 * **DwDatabaseSize**: The size in MB of the data warehouse database.
-* **UseMicrosoftUpdate**: { 0 | 1 } 
-0: Do not opt in to Microsoft Update. 
+* **UseMicrosoftUpdate**: { 0 | 1 }
+0: Do not opt in to Microsoft Update.
 1: Opt in to Microsoft Update.
-* **SendCEIPReports**: { 0 | 1 } 
-0: Do not opt in to the Customer Experience Improvement Program (CEIP). 
+* **SendCEIPReports**: { 0 | 1 }
+0: Do not opt in to the Customer Experience Improvement Program (CEIP).
 1: Opt in to CEIP.
 * **EnableErrorReporting**: { Never | Queued | Always }
 Never: Do not opt in to sending automatic error reports.
 Queued: Opt in to sending error reports, but queue the reports for review before sending.
 Always: Opt in to automatically send error reports.
 * **SendODRReports**: { 0 | 1 }
-0: Do not opt in to sending operational data reports. 
+0: Do not opt in to sending operational data reports.
 1: Opt in to sending operational data reports.
 
 ### xSCOMReportingServerSetup
 
-* **Ensure**: (Key) Ensures that the OM reporting server is **Present** or **Absent**. 
+* **Ensure**: (Key) Ensures that the OM reporting server is **Present** or **Absent**.
 * **SourcePath**: (Required) UNC path to the root of the source files for installation.
 * **SourceFolder**: Folder within the source path containing the source files for installation.
 * **SetupCredential**: (Required) Credential to be used to perform the installation.
@@ -73,71 +73,71 @@ Always: Opt in to automatically send error reports.
 * **SRSInstance**: (Required) The reporting server and instance.
 * **DataReader**: (Required) The domain and user name of the data reader account.
 * **DataReaderUsername**: Output user name of the data reader account.
-* **UseMicrosoftUpdate**: { 0 | 1 } 
-0: Do not opt in to Microsoft Update. 
+* **UseMicrosoftUpdate**: { 0 | 1 }
+0: Do not opt in to Microsoft Update.
 1: Opt in to Microsoft Update.
-* **SendCEIPReports**: { 0 | 1 } 
-0: Do not opt in to the Customer Experience Improvement Program (CEIP). 
+* **SendCEIPReports**: { 0 | 1 }
+0: Do not opt in to the Customer Experience Improvement Program (CEIP).
 1: Opt in to CEIP.
 * **EnableErrorReporting**: { Never | Queued | Always }
 Never: Do not opt in to sending automatic error reports.
 Queued: Opt in to sending error reports, but queue the reports for review before sending.
 Always: Opt in to automatically send error reports.
 * **SendODRReports**: { 0 | 1 }
-0: Do not opt in to sending operational data reports. 
+0: Do not opt in to sending operational data reports.
 1: Opt in to sending operational data reports.
 
 ### xSCOMWebConsoleServerSetup
 
-* **Ensure**: (Key) Ensures that the OM web console server is **Present** or **Absent**. 
+* **Ensure**: (Key) Ensures that the OM web console server is **Present** or **Absent**.
 * **SourcePath**: (Required) UNC path to the root of the source files for installation.
 * **SourceFolder**: Folder within the source path containing the source files for installation.
 * **SetupCredential**: (Required) Credential to be used to perform the installation.
 * **InstallPath**: Installation path for the software.
 * **ManagementServer**: (Required) The name of the management server associated with the Reporting server.
 * **WebSiteName**: The name of the website.
-* **WebConsoleAuthorizationMode**:{ Mixed | Network } 
-Mixed: Used for intranet scenarios. 
+* **WebConsoleAuthorizationMode**:{ Mixed | Network }
+Mixed: Used for intranet scenarios.
 Network: Used for extranet scenarios.
 * **WebConsoleUseSSL**: Specify only if your website has Secure Sockets Layer (SSL) activated.
-* **UseMicrosoftUpdate**: { 0 | 1 } 
-0: Do not opt in to Microsoft Update. 
+* **UseMicrosoftUpdate**: { 0 | 1 }
+0: Do not opt in to Microsoft Update.
 1: Opt in to Microsoft Update.
-* **SendCEIPReports**: { 0 | 1 } 
-0: Do not opt in to the Customer Experience Improvement Program (CEIP). 
+* **SendCEIPReports**: { 0 | 1 }
+0: Do not opt in to the Customer Experience Improvement Program (CEIP).
 1: Opt in to CEIP.
 * **EnableErrorReporting**: { Never | Queued | Always }
 Never: Do not opt in to sending automatic error reports.
 Queued: Opt in to sending error reports, but queue the reports for review before sending.
 Always: Opt in to automatically send error reports.
 * **SendODRReports**: { 0 | 1 }
-0: Do not opt in to sending operational data reports. 
+0: Do not opt in to sending operational data reports.
 1: Opt in to sending operational data reports.
 
 ### xSCOMConsoleSetup
 
-* **Ensure**: (Key) Ensures that the OM console is **Present** or **Absent**. 
+* **Ensure**: (Key) Ensures that the OM console is **Present** or **Absent**.
 * **SourcePath**: (Required) UNC path to the root of the source files for installation.
 * **SourceFolder**: Folder within the source path containing the source files for installation.
 * **SetupCredential**: (Required) Credential to be used to perform the installation.
 * **InstallPath**: Installation path for the software.
-* **UseMicrosoftUpdate**: { 0 | 1 } 
-0: Do not opt in to Microsoft Update. 
+* **UseMicrosoftUpdate**: { 0 | 1 }
+0: Do not opt in to Microsoft Update.
 1: Opt in to Microsoft Update.
-* **SendCEIPReports**: { 0 | 1 } 
-0: Do not opt in to the Customer Experience Improvement Program (CEIP). 
+* **SendCEIPReports**: { 0 | 1 }
+0: Do not opt in to the Customer Experience Improvement Program (CEIP).
 1: Opt in to CEIP.
 * **EnableErrorReporting**: { Never | Queued | Always }
 Never: Do not opt in to sending automatic error reports.
 Queued: Opt in to sending error reports, but queue the reports for review before sending.
 Always: Opt in to automatically send error reports.
 * **SendODRReports**: { 0 | 1 }
-0: Do not opt in to sending operational data reports. 
+0: Do not opt in to sending operational data reports.
 1: Opt in to sending operational data reports.
 
 ### xSCOMManagementServerUpdate
 
-* **Ensure**: (Key) Ensures that the OM management server update is **Present** or **Absent**. 
+* **Ensure**: (Key) Ensures that the OM management server update is **Present** or **Absent**.
 * **SourcePath**: (Required) UNC path to the root of the source files for installation.
 * **SourceFolder**: Folder within the source path containing the source files for installation.
 * **Credential**: (Required) Credential to be used to perform the installation.
@@ -145,7 +145,7 @@ Always: Opt in to automatically send error reports.
 
 ### xSCOMWebConsoleServerUpdate
 
-* **Ensure**: (Key) Ensures that the OM web console server update is **Present** or **Absent**. 
+* **Ensure**: (Key) Ensures that the OM web console server update is **Present** or **Absent**.
 * **SourcePath**: (Required) UNC path to the root of the source files for installation.
 * **SourceFolder**: Folder within the source path containing the source files for installation.
 * **Credential**: (Required) Credential to be used to perform the installation.
@@ -153,7 +153,7 @@ Always: Opt in to automatically send error reports.
 
 ### xSCOMConsoleUpdate
 
-* **Ensure**: (Key) Ensures that the OM console update is **Present** or **Absent**. 
+* **Ensure**: (Key) Ensures that the OM console update is **Present** or **Absent**.
 * **SourcePath**: (Required) UNC path to the root of the source files for installation.
 * **SourceFolder**: Folder within the source path containing the source files for installation.
 * **Credential**: (Required) Credential to be used to perform the installation.
@@ -181,7 +181,10 @@ Note: This is overridden by Version if both are set.
 ## Versions
 
 ### Unreleased
-* Converted appveyor.yml to install Pester from PSGallery instead of from Chocolatey.
+
+* Update appveyor.yml to use the default template.
+* Added default template files .codecov.yml, .gitattributes, and .gitignore, and
+  .vscode folder.
 
 ### 1.3.3.0
 
@@ -190,7 +193,7 @@ Note: This is overridden by Version if both are set.
 
 ### 1.2.0.0
 
-* Updated to include the following resources: 
+* Updated to include the following resources:
     - xSCOMManagementServerUpdate
     - xSCOMWebConsoleServerUpdate
     - xSCOMConsoleUpdate
@@ -207,18 +210,18 @@ Note: This is overridden by Version if both are set.
 
 ## Examples
 
-Four example configurations are included in the Examples folder within the module. 
-All four examples also use the **xCredSSP** and **xSQLServer** modules. 
+Four example configurations are included in the Examples folder within the module.
+All four examples also use the **xCredSSP** and **xSQLServer** modules.
 Note: the samples require the use of [Windows Management Framework (WMF) 5.0 Preview](http://go.microsoft.com/fwlink/?LinkId=398175).
 
-Note: In the Examples folder you will see a version of each file with "-TP" appended to the name. 
+Note: In the Examples folder you will see a version of each file with "-TP" appended to the name.
 These are the equivalent examples for deployment of System Center Technical Preview on Windows Server Technical Preview.
 
 ### Single Server Installation
 
 SCOM-SingleServer.ps1 installs all OM roles including prerequisites and SQL on a single server.
 
-### Separate SQL 
+### Separate SQL
 
 SCOM-SeperateSQL.ps1 installs all OM roles on one server and SQL on a separate server.
 
